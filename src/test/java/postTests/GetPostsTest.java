@@ -5,6 +5,8 @@ import io.restassured.module.jsv.JsonSchemaValidator;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pojos.Post;
+import utils.Constants;
+
 import java.io.File;
 
 import static io.restassured.RestAssured.*;
@@ -68,6 +70,6 @@ public class GetPostsTest extends BaseTest {
                 .get("posts")
                 .then()
                 .statusCode(200)
-                .body(JsonSchemaValidator.matchesJsonSchema(new File(".//src//test//resources//GetPostsSchema.json")));
+                .body(JsonSchemaValidator.matchesJsonSchema(new File(Constants.GET_POSTS_SCHEMA_PATH)));
     }
 }
