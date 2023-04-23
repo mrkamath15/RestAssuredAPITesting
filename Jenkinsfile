@@ -11,10 +11,9 @@ pipeline {
                     publishHTML target: [
                     allowMissing: false,
                     alwaysLinkToLastBuild: true,
-                        includes: '**/*.png',
                     keepAll: true,
-                    reportDir: 'test-output/',
-                    reportFiles: 'index.html',
+                    reportDir: 'target\surefire-reports',
+                    reportFiles: 'emailable-report.html',
                     reportName: 'REST API Test Report'
                 ]                
             }
