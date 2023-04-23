@@ -11,8 +11,9 @@ pipeline {
                     publishHTML target: [
                     allowMissing: false,
                     alwaysLinkToLastBuild: true,
+                        includes: '**/*.png',
                     keepAll: true,
-                    reportDir: 'test-output',
+                    reportDir: 'test-output/',
                     reportFiles: 'index.html',
                     reportName: 'REST API Test Report'
                 ]                
