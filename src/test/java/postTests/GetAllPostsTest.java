@@ -12,10 +12,10 @@ import java.io.File;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
-public class GetPostsTest extends BaseTest {
+public class GetAllPostsTest extends BaseTest {
 
     @Test
-    public void getPostsTest() {
+    public void getAllPostsTest() {
         given()
                 .spec(spec)
                 .when()
@@ -31,7 +31,7 @@ public class GetPostsTest extends BaseTest {
     }
 
     @Test
-    public void getPostsUsingPojo() {
+    public void getAllPostsUsingPojoTest() {
         Post[] post = given()
                 .spec(spec)
                 .when()
@@ -52,7 +52,21 @@ public class GetPostsTest extends BaseTest {
     }
 
     @Test
-    public void getPostsResponseTimeTest() {
+    public void testSinglePostValues() {
+        given()
+                .spec(spec)
+                .when()
+                .get("posts")
+                .then()
+                .statusCode(200)
+                .body("userId[0]", equalTo(1))
+                .body("id[0]",equalTo(1))
+                .body("title[0]", startsWith("sunt aut facere"))
+                .body("body[0]", endsWith("eveniet architecto"));
+    }
+
+    @Test
+    public void getAllPostsResponseTimeTest() {
         given()
                 .spec(spec)
                 .when()
@@ -63,13 +77,13 @@ public class GetPostsTest extends BaseTest {
     }
 
     @Test
-    public void getPostsSchemaValidationTest() {
+    public void getAllPostsSchemaValidationTest() {
         given()
                 .spec(spec)
                 .when()
                 .get("posts")
                 .then()
                 .statusCode(200)
-                .body(JsonSchemaValidator.matchesJsonSchema(new File(Constants.GET_POSTS_SCHEMA_PATH)));
+                .body(JsonSchemaValidator.matchesJsonSchema(new File(Constants.GET_ALL_POSTS_SCHEMA_PATH)));
     }
 }
