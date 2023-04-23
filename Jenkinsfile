@@ -12,8 +12,8 @@ pipeline {
                     allowMissing: false,
                     alwaysLinkToLastBuild: true,
                     keepAll: true,
-                    reportDir: 'target/surefire-reports/API Automation Framework',
-                    reportFiles: 'Automation Test.html',
+                    reportDir: 'reports',
+                    reportFiles: 'Extent_HTML_Report.html',
                     reportName: 'REST API Test Report'
                 ]                
             }
