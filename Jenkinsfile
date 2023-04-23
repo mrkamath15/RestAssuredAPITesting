@@ -11,7 +11,6 @@ pipeline {
                     publishHTML target: [
                     allowMissing: false,
                     alwaysLinkToLastBuild: true,
-                        includes: '**/*.png',
                     keepAll: true,
                     reportDir: 'target/surefire-reports',
                     reportFiles: 'emailable-report.html',
