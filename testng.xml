@@ -6,7 +6,8 @@
             <class name="postTests.GetAllPostsTest"></class>
             <class name="commentsTests.GetAllCommentsTests"></class>
             <class name="albumsTests.GetAllAlbumsTest"></class>
-            <class name="postTests.GetAllPostsTest"></class>
+            <class name="photosTests.GetAllPhotosTest"></class>
+            <class name="todoTests.GetAllToDosTests"></class>
         </classes>
     </test>
 </suite>
