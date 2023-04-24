@@ -3,11 +3,12 @@
 <suite name="API Automation Framework">
     <test name="Automation Test">
         <classes>
-            <class name="postTests.GetAllPostsTest"></class>
-            <class name="commentsTests.GetAllCommentsTests"></class>
-            <class name="albumsTests.GetAllAlbumsTest"></class>
-            <class name="photosTests.GetAllPhotosTest"></class>
-            <class name="todoTests.GetAllToDosTests"></class>
+            <class name="postTests.GetAllPostsTest" />
+            <class name="commentsTests.GetAllCommentsTests" />
+            <class name="albumsTests.GetAllAlbumsTest" />
+            <class name="photosTests.GetAllPhotosTest" />
+            <class name="todoTests.GetAllToDosTests" />
+            <class name="usersTests.GetAllUsersTests" />
         </classes>
     </test>
 </suite>
