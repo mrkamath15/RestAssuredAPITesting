@@ -22,21 +22,21 @@ public class GetAllUsersTests extends BaseTest {
                 .statusCode(200)
                 .body("$", hasSize(greaterThan(1)))
                 .body("$.size()", equalTo(10))
-                .body("id", hasItems(notNullValue()))
-                .body("name", hasItems(notNullValue()))
-                .body("username", hasItems(notNullValue()))
-                .body("email", hasItems(notNullValue()))
-                .body("address.street", hasItems(notNullValue()))
-                .body("address.suite", hasItems(notNullValue()))
-                .body("address.city", hasItems(notNullValue()))
-                .body("address.zipcode", hasItems(notNullValue()))
-                .body("address.geo.lat", hasItems(notNullValue()))
-                .body("address.geo.lng", hasItems(notNullValue()))
-                .body("phone", hasItems(notNullValue()))
-                .body("website", hasItems(notNullValue()))
-                .body("company.name", hasItems(notNullValue()))
-                .body("company.catchPhrase", hasItems(notNullValue()))
-                .body("company.bs", hasItems(notNullValue()));
+                .body("id", notNullValue())
+                .body("name", notNullValue())
+                .body("username", notNullValue())
+                .body("email", notNullValue())
+                .body("address.street", notNullValue())
+                .body("address.suite", notNullValue())
+                .body("address.city", notNullValue())
+                .body("address.zipcode", notNullValue())
+                .body("address.geo.lat", notNullValue())
+                .body("address.geo.lng", notNullValue())
+                .body("phone", notNullValue())
+                .body("website", notNullValue())
+                .body("company.name", notNullValue())
+                .body("company.catchPhrase", notNullValue())
+                .body("company.bs", notNullValue());
     }
 
     @Test
@@ -115,6 +115,32 @@ public class GetAllUsersTests extends BaseTest {
                 .then()
                 .statusCode(200)
                 .body(JsonSchemaValidator.matchesJsonSchema(new File(Constants.GET_ALL_USERS_SCHEMA_PATH)));
+    }
+
+    @Test
+    public void getUserByIdTest() {
+        given()
+                .spec(spec)
+                .when()
+                .get("users?id=5")
+                .then()
+                .statusCode(200)
+                .body("$.size()", equalTo(1))
+                .body("id[0]", equalTo(5))
+                .body("name[0]", notNullValue())
+                .body("username[0]", notNullValue())
+                .body("email[0]", notNullValue())
+                .body("address[0].street", notNullValue())
+                .body("address[0].suite", notNullValue())
+                .body("address[0].city", notNullValue())
+                .body("address[0].zipcode", notNullValue())
+                .body("address[0].geo.lat", notNullValue())
+                .body("address[0].geo.lng", notNullValue())
+                .body("phone[0]", notNullValue())
+                .body("website[0]", notNullValue())
+                .body("company[0].name", notNullValue())
+                .body("company[0].catchPhrase", notNullValue())
+                .body("company[0].bs", notNullValue());
     }
 
 }

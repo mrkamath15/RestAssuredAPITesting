@@ -25,9 +25,9 @@ public class GetAllAlbumsTest extends BaseTest {
                 .statusCode(200)
                 .body("$", hasSize(greaterThan(1)))
                 .body("$.size()", equalTo(100))
-                .body("userId", hasItems(notNullValue()))
-                .body("id", hasItems(notNullValue()))
-                .body("title", hasItems(notNullValue()));
+                .body("userId", everyItem(notNullValue()))
+                .body("id", everyItem(notNullValue()))
+                .body("title", everyItem(notNullValue()));
     }
 
     @Test
@@ -82,5 +82,35 @@ public class GetAllAlbumsTest extends BaseTest {
                 .then()
                 .statusCode(200)
                 .body(JsonSchemaValidator.matchesJsonSchema(new File(Constants.GET_ALL_ALBUMS_SCHEMA_PATH)));
+    }
+
+    @Test
+    public void getAlbumByIdTest() {
+        given()
+                .spec(spec)
+                .queryParam("id", 5)
+                .when()
+                .get("albums")
+                .then()
+                .statusCode(200)
+                .body("$.size()", equalTo(1))
+                .body("userId[0]", notNullValue())
+                .body("id[0]", equalTo(5))
+                .body("title[0]", notNullValue());
+    }
+
+    @Test
+    public void getAlbumsByUserIdTest() {
+        given()
+                .spec(spec)
+                .queryParam("userId", 5)
+                .when()
+                .get("albums")
+                .then()
+                .statusCode(200)
+                .body("$.size()", greaterThan(1))
+                .body("id", everyItem(notNullValue()))
+                .body("userId" , everyItem(equalTo(5)))
+                .body("title", everyItem(notNullValue()));
     }
 }

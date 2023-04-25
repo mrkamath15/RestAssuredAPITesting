@@ -4,11 +4,17 @@
     <test name="Automation Test">
         <classes>
             <class name="postTests.GetAllPostsTest" />
+            <class name="postTests.GetSinglePostTest" />
             <class name="commentsTests.GetAllCommentsTests" />
+            <class name="commentsTests.GetSingleCommentTest" />
             <class name="albumsTests.GetAllAlbumsTest" />
+            <class name="albumsTests.GetSingleAlbumTest" />
             <class name="photosTests.GetAllPhotosTest" />
+            <class name="photosTests.GetSinglePhotoTest" />
             <class name="todoTests.GetAllToDosTests" />
+            <class name="todoTests.GetSingleToDoTest" />
             <class name="usersTests.GetAllUsersTests" />
+            <class name="usersTests.GetSingleUserTest" />
         </classes>
     </test>
 </suite>

@@ -24,11 +24,11 @@ public class GetAllCommentsTests extends BaseTest {
                 .statusCode(200)
                 .body("$", hasSize(greaterThan(1)))
                 .body("$.size()", equalTo(500))
-                .body("postId", hasItems(notNullValue()))
-                .body("id", hasItems(notNullValue()))
-                .body("name", hasItems(notNullValue()))
-                .body("email", hasItems(notNullValue()))
-                .body("body", hasItems(notNullValue()));
+                .body("postId", everyItem(notNullValue()))
+                .body("id", everyItem(notNullValue()))
+                .body("name", everyItem(notNullValue()))
+                .body("email", everyItem(notNullValue()))
+                .body("body", everyItem(notNullValue()));
     }
 
     @Test
@@ -87,5 +87,36 @@ public class GetAllCommentsTests extends BaseTest {
                 .then()
                 .statusCode(200)
                 .body(JsonSchemaValidator.matchesJsonSchema(new File(Constants.GET_ALL_COMMENTS_SCHEMA_PATH)));
+    }
+
+    @Test
+    public void getCommentsByPostIdTest() {
+        given()
+                .spec(spec)
+                .when()
+                .get("comments?postId={id}", 100)
+                .then()
+                .statusCode(200)
+                .body("postId", everyItem(equalTo(100)))
+                .body("id", everyItem(notNullValue()))
+                .body("name", everyItem(notNullValue()))
+                .body("email", everyItem(notNullValue()))
+                .body("body", everyItem(notNullValue()));
+    }
+
+    @Test
+    public void getCommentsByPostIdAsQueryParamTest() {
+        given()
+                .spec(spec)
+                .queryParam("postId", 50)
+                .when()
+                .get("comments")
+                .then()
+                .statusCode(200)
+                .body("postId", everyItem(equalTo(50)))
+                .body("id", everyItem(notNullValue()))
+                .body("name", everyItem(notNullValue()))
+                .body("email", everyItem(notNullValue()))
+                .body("body", everyItem(notNullValue()));
     }
 }

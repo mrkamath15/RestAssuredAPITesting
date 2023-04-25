@@ -85,4 +85,36 @@ public class GetAllToDosTests extends BaseTest {
                 .statusCode(200)
                 .body(JsonSchemaValidator.matchesJsonSchema(new File(Constants.GET_ALL_TODOS_SCHEMA_PATH)));
     }
+
+    @Test
+    public void getToDoByIdTest() {
+        given()
+                .spec(spec)
+                .queryParam("id", 5)
+                .when()
+                .get("todos")
+                .then()
+                .statusCode(200)
+                .body("userId[0]", notNullValue())
+                .body("id[0]", equalTo(5))
+                .body("title[0]", notNullValue())
+                .body("completed[0]", notNullValue());
+    }
+
+    @Test
+    public void getToDoByUserIdTest() {
+        given()
+                .spec(spec)
+                .queryParam("userId", 5)
+                .when()
+                .get("todos")
+                .then()
+                .statusCode(200)
+                .body("userId", everyItem(equalTo(5)))
+                .body("id", everyItem(notNullValue()))
+                .body("title", everyItem(notNullValue()))
+                .body("completed", everyItem(notNullValue()));
+    }
+
+
 }

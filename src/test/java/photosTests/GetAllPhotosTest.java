@@ -24,11 +24,11 @@ public class GetAllPhotosTest extends BaseTest {
                 .statusCode(200)
                 .body("$", hasSize(greaterThan(1)))
                 .body("$.size()", equalTo(5000))
-                .body("albumId", hasItems(notNullValue()))
-                .body("id", hasItems(notNullValue()))
-                .body("title", hasItems(notNullValue()))
-                .body("url", hasItems(notNullValue()))
-                .body("thumbnailUrl", hasItems(notNullValue()));
+                .body("albumId", everyItem(notNullValue()))
+                .body("id", everyItem(notNullValue()))
+                .body("title", everyItem(notNullValue()))
+                .body("url", everyItem(notNullValue()))
+                .body("thumbnailUrl", everyItem(notNullValue()));
     }
 
     @Test
@@ -87,5 +87,36 @@ public class GetAllPhotosTest extends BaseTest {
                 .then()
                 .statusCode(200)
                 .body(JsonSchemaValidator.matchesJsonSchema(new File(Constants.GET_ALL_PHOTOS_SCHEMA_PATH)));
+    }
+
+    @Test
+    public void getPhotosByIdTest() {
+        given()
+                .spec(spec)
+                .queryParam("id", 100)
+                .when()
+                .get("photos")
+                .then()
+                .statusCode(200)
+                .body("albumId[0]", notNullValue())
+                .body("id[0]", equalTo(100))
+                .body("title[0]", notNullValue())
+                .body("url[0]", notNullValue())
+                .body("thumbnailUrl[0]", notNullValue());
+    }
+
+    @Test
+    public void getPhotosByAlbumIdTest() {
+        given()
+                .spec(spec)
+                .when()
+                .get("photos?albumId={id}", 5)
+                .then()
+                .statusCode(200)
+                .body("albumId", everyItem(equalTo(5)))
+                .body("id", everyItem(notNullValue()))
+                .body("title", everyItem(notNullValue()))
+                .body("url", everyItem(notNullValue()))
+                .body("thumbnailUrl", everyItem(notNullValue()));
     }
 }
