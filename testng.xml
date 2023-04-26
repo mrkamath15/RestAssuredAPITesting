@@ -5,16 +5,22 @@
         <classes>
             <class name="postTests.GetAllPostsTest" />
             <class name="postTests.GetSinglePostTest" />
+            <class name="postTests.CreatePostTest" />
             <class name="commentsTests.GetAllCommentsTests" />
             <class name="commentsTests.GetSingleCommentTest" />
+            <class name="commentsTests.CreateCommentTest" />
             <class name="albumsTests.GetAllAlbumsTest" />
             <class name="albumsTests.GetSingleAlbumTest" />
+            <class name="albumsTests.CreateAlbumTest" />
             <class name="photosTests.GetAllPhotosTest" />
             <class name="photosTests.GetSinglePhotoTest" />
+            <class name="photosTests.CreatePhotoTest" />
             <class name="todoTests.GetAllToDosTests" />
             <class name="todoTests.GetSingleToDoTest" />
+            <class name="todoTests.CreateToDoTest" />
             <class name="usersTests.GetAllUsersTests" />
             <class name="usersTests.GetSingleUserTest" />
+            <class name="usersTests.CreateUserTest" />
         </classes>
     </test>
 </suite>
