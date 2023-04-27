@@ -6,21 +6,39 @@
             <class name="postTests.GetAllPostsTest" />
             <class name="postTests.GetSinglePostTest" />
             <class name="postTests.CreatePostTest" />
+            <class name="postTests.UpdatePostTest" />
+            <class name="postTests.PostPatchTest" />
+            <class name="postTests.DeletePostTest" />
             <class name="commentsTests.GetAllCommentsTests" />
             <class name="commentsTests.GetSingleCommentTest" />
             <class name="commentsTests.CreateCommentTest" />
+            <class name="commentsTests.UpdateCommentTest" />
+            <class name="commentsTests.CommentPatchTest" />
+            <class name="commentsTests.DeleteCommentTest" />
             <class name="albumsTests.GetAllAlbumsTest" />
             <class name="albumsTests.GetSingleAlbumTest" />
             <class name="albumsTests.CreateAlbumTest" />
+            <class name="albumsTests.UpdateAlbumTest" />
+            <class name="albumsTests.AlbumPatchTest" />
+            <class name="albumsTests.DeleteAlbumTest" />
             <class name="photosTests.GetAllPhotosTest" />
             <class name="photosTests.GetSinglePhotoTest" />
             <class name="photosTests.CreatePhotoTest" />
+            <class name="photosTests.CreatePhotoTest" />
+            <class name="photosTests.PhotoPatchTest" />
+            <class name="photosTests.DeletePhotosTest" />
             <class name="todoTests.GetAllToDosTests" />
             <class name="todoTests.GetSingleToDoTest" />
             <class name="todoTests.CreateToDoTest" />
+            <class name="todoTests.UpdateToDoTest" />
+            <class name="todoTests.TodoPatchTest" />
+            <class name="todoTests.DeleteTodoTest" />
             <class name="usersTests.GetAllUsersTests" />
             <class name="usersTests.GetSingleUserTest" />
             <class name="usersTests.CreateUserTest" />
+            <class name="usersTests.UpdateUserTest" />
+            <class name="usersTests.UserPatchTest" />
+            <class name="usersTests.DeleteUsersTest" />
         </classes>
     </test>
 </suite>
