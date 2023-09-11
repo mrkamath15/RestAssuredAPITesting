@@ -3,12 +3,7 @@
 <suite name="API Automation Framework">
     <test name="Automation Test">
         <packages>
-            <package name="albumsTests" />
-            <package name="commentsTests" />
-            <package name="photosTests" />
-            <package name="postTests" />
-            <package name="todoTests" />
-            <package name="usersTests" />
+            <package name=".*" />
         </packages>
     </test>
 </suite>

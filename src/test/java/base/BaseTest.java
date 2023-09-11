@@ -23,59 +23,57 @@ import utils.Constants;
 import java.lang.reflect.Method;
 
 public class BaseTest {
-    public static RequestSpecification spec;
-    private RequestSpecBuilder builder;
-    public ExtentSparkReporter sparkReporter;
-    public static ExtentReports extentReports;
-    public static ExtentTest extentTest;
+  public static RequestSpecification spec;
+  private RequestSpecBuilder builder;
+  public ExtentSparkReporter sparkReporter;
+  public static ExtentReports extentReports;
+  public static ExtentTest extentTest;
 
-    public BaseTest() {
-        builder = new RequestSpecBuilder();
-        builder.setBaseUri("https://jsonplaceholder.typicode.com/");
-        builder.setContentType(ContentType.JSON);
-        builder.log(LogDetail.URI);
-        builder.log(LogDetail.BODY);
-        builder.log(LogDetail.METHOD);
-        builder.addFilter(new ResponseLoggingFilter(LogDetail.STATUS));
-        builder.addFilter(new ResponseLoggingFilter(LogDetail.BODY));
-        spec = builder.build();
-    }
+  public BaseTest() {
+    builder = new RequestSpecBuilder();
+    builder.setBaseUri("https://jsonplaceholder.typicode.com/");
+    builder.setContentType(ContentType.JSON);
+    builder.log(LogDetail.URI);
+    builder.log(LogDetail.BODY);
+    builder.log(LogDetail.METHOD);
+    builder.addFilter(new ResponseLoggingFilter(LogDetail.STATUS));
+    builder.addFilter(new ResponseLoggingFilter(LogDetail.BODY));
+    spec = builder.build();
+  }
 
-    @BeforeTest
-    public void beforeTest() {
-        sparkReporter = new ExtentSparkReporter(Constants.EXTENT_REPORTS_PATH);
-        sparkReporter.config().setReportName("API Automation Report");
-        sparkReporter.config().setDocumentTitle("REST API Automation Report");
-        sparkReporter.config().setTheme(Theme.DARK);
-        sparkReporter.config().setEncoding("utf-8");
-        extentReports = new ExtentReports();
-        extentReports.attachReporter(sparkReporter);
-    }
+  @BeforeTest
+  public void beforeTest() {
+    sparkReporter = new ExtentSparkReporter(Constants.EXTENT_REPORTS_PATH);
+    sparkReporter.config().setReportName("API Automation Report");
+    sparkReporter.config().setDocumentTitle("REST API Automation Report");
+    sparkReporter.config().setTheme(Theme.DARK);
+    sparkReporter.config().setEncoding("utf-8");
+    extentReports = new ExtentReports();
+    extentReports.attachReporter(sparkReporter);
+  }
 
-    @AfterTest
-    public void afterTest() {
-        extentReports.flush();
-    }
+  @AfterTest
+  public void afterTest() {
+    extentReports.flush();
+  }
 
-    @BeforeMethod
-    public void beforeMethod(Method method) {
-        extentTest = extentReports.createTest(method.getName());
-    }
+  @BeforeMethod
+  public void beforeMethod(Method method) {
+    extentTest = extentReports.createTest(method.getName());
+  }
 
-    @AfterMethod
-    public void afterMethod(ITestResult result) {
-        if (result.getStatus() == ITestResult.SUCCESS) {
-            Markup m = MarkupHelper.createLabel("Test Passed", ExtentColor.GREEN);
-            extentTest.log(Status.PASS, m);
-        }
-        else if (result.getStatus() == ITestResult.FAILURE) {
-            Markup m = MarkupHelper.createLabel("Test Failed", ExtentColor.RED);
-            extentTest.log(Status.FAIL, m);
-            extentTest.fail(result.getThrowable());
-        }
-        else if (result.getStatus() == ITestResult.SKIP) {
-            Markup m = MarkupHelper.createLabel("Test Skipped", ExtentColor.AMBER);
-            extentTest.log(Status.SKIP,m);
-        }
+  @AfterMethod
+  public void afterMethod(ITestResult result) {
+    if (result.getStatus() == ITestResult.SUCCESS) {
+      Markup m = MarkupHelper.createLabel("Test Passed", ExtentColor.GREEN);
+      extentTest.log(Status.PASS, m);
+    } else if (result.getStatus() == ITestResult.FAILURE) {
+      Markup m = MarkupHelper.createLabel("Test Failed", ExtentColor.RED);
+      extentTest.log(Status.FAIL, m);
+      extentTest.fail(result.getThrowable());
+    } else if (result.getStatus() == ITestResult.SKIP) {
+      Markup m = MarkupHelper.createLabel("Test Skipped", ExtentColor.AMBER);
+      extentTest.log(Status.SKIP, m);
     }
+  }
 }

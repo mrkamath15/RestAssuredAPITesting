@@ -9,8 +9,8 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
     </properties>
 <dependencies>
     <dependency>
@@ -21,7 +21,7 @@
     <dependency>
         <groupId>org.testng</groupId>
         <artifactId>testng</artifactId>
-        <version>6.14.3</version>
+        <version>7.8.0</version>
         <scope>test</scope>
     </dependency>
     <dependency>
@@ -40,6 +40,12 @@
         <artifactId>extentreports</artifactId>
         <version>5.0.7</version>
     </dependency>
+    <dependency>
+        <groupId>org.json</groupId>
+        <artifactId>json</artifactId>
+        <version>20230618</version>
+    </dependency>
+
 
 </dependencies>
 
@@ -48,13 +54,36 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0</version>
+                <version>3.1.2</version>
                 <configuration>
                     <suiteXmlFiles>
                         <suiteXmlFile>testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
+            <plugin>
+                                        <groupId>org.apache.maven.plugins</groupId>
+                                        <artifactId>maven-checkstyle-plugin</artifactId>
+                                        <version>3.2.0</version>
+                                        <configuration>
+                                            <consoleOutput>true</consoleOutput>
+                                            <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                                            <failOnViolation>true</failOnViolation>
+                                            <failsOnError>true</failsOnError>
+                                            <configLocation>config/checkstyle/checkstyle.xml</configLocation>
+                                            <suppressionsLocation>config/checkstyle/suppressions.xml</suppressionsLocation>
+                                            <suppressionsFileExpression>suppressions.xml</suppressionsFileExpression>
+                                        </configuration>
+                                        <executions>
+                                            <execution>
+                                                <id>validate</id>
+                                                <phase>validate</phase>
+                                                <goals>
+                                                    <goal>check</goal>
+                                                </goals>
+                                            </execution>
+                                        </executions>
+                                    </plugin>
         </plugins>
     </build>
 </project>
